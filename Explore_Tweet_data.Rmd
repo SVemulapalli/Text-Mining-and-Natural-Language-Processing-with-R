@@ -1,0 +1,197 @@
+---
+title: "Explore Tweet Data using R"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+```{r}
+library(tm)
+library(lubridate)
+library(dplyr)
+library(plotly)
+library(scales)
+
+library(RSentiment)
+library(stringr)
+library(broom)
+library(tidyr)
+library(tidytext)
+
+
+```
+
+```{r}
+tweets=read.csv("tweets.csv")
+head(tweets)
+
+
+```
+
+```{r}
+### explore tweeting frequency
+temp = tweets %>% select(handle,is_retweet)
+temp
+
+```
+
+```{r}
+temp['is_retweet'] = ifelse(temp$is_retweet=='False','Original Tweets','Retweets')
+```
+
+```{r}
+head(temp)
+```
+
+```{r}
+temp = temp %>% group_by(is_retweet,handle)
+```
+
+```{r}
+head(temp)
+```
+
+```{r}
+temp= temp %>% summarise(n=n())
+```
+
+```{r}
+temp
+```
+
+```{r}
+ggplot(temp, aes(x=handle, y=n, fill=is_retweet)) +
+  geom_bar(position="dodge",stat='identity')
+```
+
+```{r}
+#setting the working directory
+setwd("G:/KEDAR/University of Massachussets Amherst/My Courses/Spring 2018/R programming/Text Mining & NLP on R/Data for Text Mining")
+
+```
+
+```{r}
+d=read.csv("JerusEmb_polarity.csv")
+```
+
+```{r}
+head(d)
+```
+
+```{r}
+d$polarity
+
+```
+
+```{r}
+table(d$polarity)
+```
+
+```{r}
+prop.table(table(d$polarity))
+```
+
+```{r}
+####clean data: remove @
+
+d$text = gsub("^@\\w+ *", "", d$text)
+head(d)
+```
+
+```{r}
+#gsub example
+x <- c("This is a sentence about axis","A second pattern is also listed here")
+
+```
+
+```{r}
+x
+```
+
+```{r}
+gsub("is", "XY", x)
+```
+
+```{r}
+head(d)
+```
+
+```{r}
+# divide tweets in 2 dataframes according to positive or negative sentiment
+positive = subset(d, polarity == 'positive')
+negative = subset(d, polarity == 'negative')
+```
+
+```{r}
+class(positive)
+```
+
+```{r}
+head(positive)
+```
+
+```{r}
+dim(positive)
+```
+
+```{r}
+dim(negative)
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+

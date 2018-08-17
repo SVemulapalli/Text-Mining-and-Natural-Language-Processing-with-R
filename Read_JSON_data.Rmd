@@ -1,0 +1,107 @@
+---
+title: "Read JSON data using R"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+```{r}
+#setting the working directory
+setwd("G:/KEDAR/University of Massachussets Amherst/My Courses/Spring 2018/R programming/Text Mining & NLP on R/Data for Text Mining")
+```
+
+```{r}
+install.packages('rjson')
+```
+
+```{r}
+library(rjson)
+```
+
+```{r}
+#name/url of json file
+json_file <- "http://api.worldbank.org/country?per_page=10&region=OED&lendingtype=LNX&format=json"
+
+
+```
+
+```{r}
+#json data is stored in data_json
+data_json <- fromJSON(file=json_file)
+```
+
+```{r}
+#json file has two objects in the outer most list
+data_json[[1]]
+data_json[[2]]
+```
+
+```{r}
+class(data_json)
+```
+
+```{r}
+#you can access any particular object from the json data as shown below
+d3 <- lapply(data_json[[2]], function(x) c(x["id"], x["iso2Code"]))
+```
+
+```{r}
+class(d3)
+```
+
+```{r}
+d3 <- do.call(rbind, d3)
+```
+
+```{r}
+d3
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
