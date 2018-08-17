@@ -1,0 +1,26 @@
+#####################################################################
+################# tabulizer for reading in tables from pdfs
+
+#library(devtools)
+#install.packages(ghit)
+
+#ghit::install_github(c("leeper/tabulizerjars", "leeper/tabulizer"), INSTALL_opts = "--no-multiarch", dependencies = c("Depends", "Imports"))
+#library(tabulizerjars)
+#devtools::install_github(c("ropensci/tabulizer"),args= "--no-multiarch")
+
+
+library(tabulizer)
+library(tabulizerjars)
+
+tabs <- extract_tables("https://goo.gl/BMfgkS")
+
+head(tabs)
+
+tabs[[6]]
+
+tabs2=extract_tables("http://oro.open.ac.uk/39349/1/Singh-et-al-2014_JARS.pdf")
+
+tail(tabs2)
+class(tabs2)
+
+tabs2=as.data.frame(tabs2)
